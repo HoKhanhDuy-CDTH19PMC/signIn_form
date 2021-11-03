@@ -14,25 +14,34 @@ class MyApp extends StatelessWidget {
        debugShowCheckedModeBanner: false,
        initialRoute: '/first',
        routes: {
-      '/first':(context)=>const Login(),
+      '/first':(context)=>Login(),
          '/second':(context)=>const Err_Login(),
        },
      );
   }
 }
-class Login extends StatelessWidget with InputValidationMixin{
-  const Login({Key? key}) : super(key: key);
-
+class Login extends StatefulWidget {
+  @override
+  _Login createState() => _Login();
+}
+class _Login extends State<Login>{
+  var _formKey = GlobalKey<FormState>();
+  var isLoading = false;
+  void _submit() {
+    final isValid = _formKey.currentState!.validate();
+    if (!isValid) {
+      Navigator.push(context, MaterialPageRoute(builder: (context)=>Err_Login()));
+    }
+    _formKey.currentState!.save();
+  }
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    final _formKey = GlobalKey<FormState>();
     return Scaffold(
 
         backgroundColor: Colors.cyan,
         body: Form(
           key: _formKey,
-
           child: ListView(
             padding: EdgeInsets.fromLTRB(20, 60, 20, 0),
 
@@ -73,7 +82,15 @@ class Login extends StatelessWidget with InputValidationMixin{
                     suffixStyle: const TextStyle(color: Colors.black),
 
                 ),
-
+                  onFieldSubmitted: (value) {
+                    //Validator
+                  },
+                  validator: (value){
+                  if(value!.isEmpty){
+                    return '';
+                  }
+                  return null;
+                  },
                 ),
 
               ),
@@ -90,7 +107,12 @@ class Login extends StatelessWidget with InputValidationMixin{
                     suffixStyle: const TextStyle(color: Colors.black),
 
                 ),
+                  onFieldSubmitted: (value) {},
                   validator: (value){
+                    if(value!.isEmpty){
+                      return '';
+                    }
+                    return null;
                   },
                 ),
 
@@ -103,10 +125,7 @@ class Login extends StatelessWidget with InputValidationMixin{
                 padding: MaterialStateProperty.all(EdgeInsets.fromLTRB(0,20,0,20)),
                 ),
                   child: const Text('SIGN IN',style: TextStyle(color: Colors.white),),
-                     onPressed: (){
-
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>Err_Login()));
-                     },
+                     onPressed: () =>_submit()
           ),
               ),
           
@@ -118,11 +137,6 @@ class Login extends StatelessWidget with InputValidationMixin{
   }
 
   }
-mixin InputValidationMixin {
-  bool isEmailNotValid(String email) => email.length == 0;
-
-  bool isPasswordNotValid(String password) => password.length == 1;
-}
 
 
 class Err_Login extends StatelessWidget {
