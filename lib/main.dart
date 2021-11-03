@@ -25,13 +25,19 @@ class Login extends StatefulWidget {
   _Login createState() => _Login();
 }
 class _Login extends State<Login>{
+  TextEditingController valueEmail = TextEditingController();
+  TextEditingController valuePassword = TextEditingController();
   var _formKey = GlobalKey<FormState>();
   var isLoading = false;
   void _submit() {
     final isValid = _formKey.currentState!.validate();
     if (!isValid) {
+      return;
+    }
+    if(valueEmail!=valuePassword){
       Navigator.push(context, MaterialPageRoute(builder: (context)=>Err_Login()));
     }
+
     _formKey.currentState!.save();
   }
   // This widget is the root of your application.
@@ -72,7 +78,7 @@ class _Login extends State<Login>{
              ),
                   Container(
                 margin: EdgeInsets.fromLTRB(0,70,0,10  ),
-                child: TextFormField( obscureText: false, decoration: InputDecoration(
+                child: TextFormField(controller: valueEmail, obscureText: false, decoration: InputDecoration(
                   contentPadding: EdgeInsets.fromLTRB(0, 15, 0, 0),
                   prefixIcon: Icon(Icons.email,color: Colors.black,),
                   hintText: "Email",
@@ -82,12 +88,12 @@ class _Login extends State<Login>{
                     suffixStyle: const TextStyle(color: Colors.black),
 
                 ),
-                  onFieldSubmitted: (value) {
+                  onFieldSubmitted: (email) {
                     //Validator
                   },
-                  validator: (value){
-                  if(value!.isEmpty){
-                    return '';
+                  validator: (email){
+                  if(email!.isEmpty){
+                    return 'Vui lòng nhập email';
                   }
                   return null;
                   },
@@ -95,11 +101,10 @@ class _Login extends State<Login>{
 
               ),
                Container(
-                margin: EdgeInsets.fromLTRB(0,30,0,10  ),
-                child: TextFormField( obscureText: true, decoration: InputDecoration(
+                margin: EdgeInsets.fromLTRB(0,20,0,10  ),
+                child: TextFormField( controller:valuePassword, obscureText: true, decoration: InputDecoration(
                   contentPadding: EdgeInsets.fromLTRB(0, 15, 0, 0),
                   prefixIcon: Icon(Icons.lock,color: Colors.black,),
-                  // labelText: "tuanduy@caothang.edu.vn",
                   hintText: "Password",
                   filled: true,
                   fillColor: Colors.white,
@@ -107,10 +112,10 @@ class _Login extends State<Login>{
                     suffixStyle: const TextStyle(color: Colors.black),
 
                 ),
-                  onFieldSubmitted: (value) {},
-                  validator: (value){
-                    if(value!.isEmpty){
-                      return '';
+                  onFieldSubmitted: (password) {},
+                  validator: (password){
+                    if(password!.isEmpty){
+                      return 'Vui lòng nhập password';
                     }
                     return null;
                   },
@@ -125,7 +130,7 @@ class _Login extends State<Login>{
                 padding: MaterialStateProperty.all(EdgeInsets.fromLTRB(0,20,0,20)),
                 ),
                   child: const Text('SIGN IN',style: TextStyle(color: Colors.white),),
-                     onPressed: () =>_submit()
+                     onPressed: () =>_submit(),
           ),
               ),
           
@@ -184,7 +189,7 @@ class Err_Login extends StatelessWidget {
                   backgroundColor: MaterialStateProperty.all(Colors.black),
                   padding: MaterialStateProperty.all(EdgeInsets.fromLTRB(0,20,0,20)),
                 ),
-                onPressed: null,
+                onPressed: (){Navigator.pop(context);},
                 child: const Text('TRY AGAIN',style: TextStyle(color: Colors.white),),
               ),
             ),
