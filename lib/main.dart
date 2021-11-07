@@ -48,8 +48,8 @@ class _Login extends State<Login> {
           context, MaterialPageRoute(builder: (context) => Loading_Login()));
       Timer(
           Duration(seconds: 3),
-          () => Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (BuildContext context) => Mail())));
+          () => Navigator.of(context).pushReplacement(MaterialPageRoute(
+              builder: (BuildContext context) => List_Email())));
     }
     _formKey.currentState!.save();
   }
@@ -234,344 +234,6 @@ class Err_Login extends StatelessWidget {
   }
 }
 
-class Mail extends StatelessWidget {
-  const Mail({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(body: MailScreen());
-  }
-}
-
-class MailScreen extends StatelessWidget {
-  const MailScreen({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    Widget checkboxWidget = checkbox(title: "title");
-    Widget deletebuttonWidget = DeleteButton(title: "title");
-    Widget numberWidget = Number(title: "title");
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'MailBoxes',
-        ),
-        backgroundColor: Colors.grey,
-        leading: Navigator.canPop(context)
-            ? IconButton(
-                icon: Icon(Icons.arrow_back, color: Colors.grey),
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Login()));
-                },
-              )
-            : null,
-        actions: <Widget>[
-          TextButton(
-            style: TextButton.styleFrom(
-              padding: const EdgeInsets.all(16.0),
-              primary: Colors.blue,
-              textStyle: const TextStyle(fontSize: 15),
-            ),
-            onPressed: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Login()));
-            },
-            child: const Text('Done'),
-          ),
-        ],
-      ),
-      body: ListView(
-        children: <Widget>[
-          Container(
-            padding: const EdgeInsets.fromLTRB(10, 20, 0, 0),
-            height: 50,
-            color: Colors.grey[400],
-            child: Text('MailBoxes'),
-          ),
-          Container(
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                checkboxWidget,
-                Icon(Icons.email),
-                Expanded(
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.all(10),
-                        child: const Text(
-                          'All Inboxes',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                numberWidget,
-              ],
-            ),
-          ),
-          Container(
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                checkboxWidget,
-                Icon(Icons.cloud_off),
-                Expanded(
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.all(10),
-                        child: const Text(
-                          'iCloud',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                numberWidget,
-              ],
-            ),
-          ),
-          Container(
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                checkboxWidget,
-                Icon(Icons.mark_email_unread_outlined),
-                Expanded(
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.all(10),
-                        child: const Text(
-                          'Gmail',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                numberWidget,
-              ],
-            ),
-          ),
-          Container(
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                checkboxWidget,
-                Icon(Icons.mail_outline_outlined),
-                Expanded(
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.all(10),
-                        child: const Text(
-                          'Hotmail',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                numberWidget,
-              ],
-            ),
-          ),
-          Container(
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                checkboxWidget,
-                Icon(Icons.star),
-                Expanded(
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.all(10),
-                        child: const Text(
-                          'VIP',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                numberWidget,
-              ],
-            ),
-          ),
-          Container(
-            padding: const EdgeInsets.fromLTRB(10, 18, 0, 0),
-            height: 50,
-            color: Colors.grey[400],
-            child: Text('Special folder'),
-          ),
-          Container(
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                checkboxWidget,
-                Icon(Icons.grade_outlined),
-                Expanded(
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.all(10),
-                        child: const Text(
-                          'Secure',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                numberWidget,
-              ],
-            ),
-          ),
-          Container(
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                checkboxWidget,
-                Icon(Icons.notifications_active_outlined),
-                Expanded(
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.all(10),
-                        child: const Text(
-                          'Notifications',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                numberWidget,
-              ],
-            ),
-          ),
-          deletebuttonWidget,
-        ],
-      ),
-    );
-  }
-}
-
-class checkbox extends StatefulWidget {
-  const checkbox({Key? key, required this.title}) : super(key: key);
-  final String title;
-
-  @override
-  State<checkbox> createState() => _checkbox();
-}
-
-class _checkbox extends State<checkbox> {
-  bool isChecked = false;
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Checkbox(
-            value: isChecked,
-            onChanged: (bool? value) {
-              setState(() {
-                isChecked = value!;
-              });
-            }),
-      ],
-    );
-  }
-}
-
-class DeleteButton extends StatefulWidget {
-  const DeleteButton({Key? key, required this.title}) : super(key: key);
-  final String title;
-
-  @override
-  State<DeleteButton> createState() => _DeleteButton();
-}
-
-class _DeleteButton extends State<DeleteButton> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.only(top: 250),
-      child: Center(
-        child: Container(
-          width: double.infinity,
-          height: 50,
-          child: RaisedButton(
-            onPressed: () {},
-            color: Theme.of(context).accentColor,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Text(
-                  'DELETE',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w700,
-                    color: Colors.white,
-                  ),
-                ),
-                Icon(
-                  Icons.delete_outline_rounded,
-                )
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class Number extends StatefulWidget {
-  const Number({Key? key, required this.title}) : super(key: key);
-  final String title;
-
-  @override
-  State<Number> createState() => _Number();
-}
-
-class _Number extends State<Number> {
-  int number = 10;
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.only(right: 20),
-      child: Text(number.toString()),
-    );
-  }
-}
-
 class Loading_Login extends StatelessWidget {
   const Loading_Login({Key? key}) : super(key: key);
 
@@ -621,5 +283,111 @@ class Loading_Login extends StatelessWidget {
                         ],
                       )),
                 ])));
+  }
+}
+
+class List_Email extends StatelessWidget {
+  const List_Email({Key? key}) : super(key: key);
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            backgroundColor: Colors.cyan,
+            title: Text(
+              "Mailboxes",
+            ),
+          ),
+          body: SafeArea(
+              child: Center(
+            child: List_Checkbox(),
+          ))),
+    );
+  }
+}
+
+class List_Checkbox extends StatefulWidget {
+  @override
+  List_CheckboxState createState() => List_CheckboxState();
+}
+
+class List_CheckboxState extends State<List_Checkbox> {
+  Map<String, bool> List = {
+    "All inboxes": false,
+    "ICould": false,
+    "Gmail": false,
+    "HotMail": false,
+    "VIP": false,
+    "Boxes": false,
+  };
+
+  var holder_1 = [];
+
+  removeAllCheckItems() {
+    List.forEach((key, value) {
+      if (value == true) {
+        holder_1.add(key);
+      }
+    });
+    holder_1.forEach((element) {
+      setState(() {
+        List.remove(element);
+      });
+    });
+
+    holder_1.clear();
+    print(holder_1);
+  }
+
+  getItems() {
+    print(holder_1);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(children: <Widget>[
+      Container(
+        color: Colors.grey,
+        padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+        margin: EdgeInsets.fromLTRB(0, 0, 0, 5),
+        alignment: Alignment.topLeft,
+        child: Text(
+          'MailBoxes',
+          style: TextStyle(color: Colors.black54, fontSize: 18),
+        ),
+      ),
+      Expanded(
+        child: ListView(
+          children: List.keys.map((String key) {
+            return CheckboxListTile(
+              value: List[key],
+              title: Text(key),
+              activeColor: Colors.white,
+              checkColor: Colors.black,
+              onChanged: (value) => setState(() {
+                List[key] = value as bool;
+                if (value == false) {
+                  holder_1.remove(key);
+                } else {
+                  holder_1.add(key);
+                }
+              }),
+            );
+          }).toList(),
+        ),
+      ),
+      RaisedButton(
+        child: Text("Remove all Checked Items "),
+        onPressed: removeAllCheckItems,
+        color: Colors.cyan,
+        textColor: Colors.white,
+        splashColor: Colors.grey,
+        padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+      )
+    ]);
   }
 }
